@@ -1,0 +1,31 @@
+{% extends "blog_base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+    {% if  post.image %}
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+                <a href="{% url 'blog:detail' id=post.id %}">
+                    <img class="img-responsive img-rounded" src="{{ post.image.url }}" style="max-height: 350px; margin: 0 auto;">
+                </a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="text-center">
+        <a href="{% url 'blog:detail' id=post.id %}">
+            <h2>{{ post.title }}</h2>
+        </a>
+    </div>
+    <p>{{ post.content|safe }}</p>
+    <hr>
+    {% if post.attach_file %}    
+        <a href="{{ post.attach_file.url }}"> دانلود فایل ضمیمه </a>
+        <br>
+    {% endif %}
+    <small>{{ post.updateDateTime }}</small>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{% endblock content %}
